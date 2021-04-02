@@ -1,3 +1,14 @@
+"""
+Download files from figshare
+
+Examples
+--------
+>>> from src import download as dl
+>>> files = dl.download_files('data.zip', chunk_size=10)
+>>> dl.unzip(p=files[0], p_dst='csv', delete=False)
+"""
+
+import shutil
 from pathlib import Path
 from typing import Union
 
@@ -57,6 +68,8 @@ def download_file(url: str, name: str, chunk_size: int=1):
     progress_bar.close()
     log.info(f'File downloaded to: {p}')
 
+    return p
+
 def download_files(dl_files: Union[list, str]=None, article_id: str='14096681', **kw):
     """Download list of files
 
@@ -84,10 +97,37 @@ def download_files(dl_files: Union[list, str]=None, article_id: str='14096681', 
     # filter list of files to download
     m_info = list(filter(lambda x: [name for name in dl_files if name in x['name']], resp['files']))
 
+    files = []
     for m in m_info:
-        download_file(url=m['download_url'], name=m['name'], **kw)
+        p = download_file(url=m['download_url'], name=m['name'], **kw)
+        files.append(p)
 
-    return resp
+    return files
+
+def unzip(p: Path, p_dst: Union[Path, str]=None, delete=False) -> Path:
+    """Simple wrapper for shultil unpack_archive with default unzip dir
+
+    Parameters
+    ----------
+    p : Path
+        File to unzip
+    p_dst : Union[Path, str], optional
+        Unzip in different dir, by default parent dir
+    delete : bool, optional
+        Delete original zip after unpack, by default False
+    """
+    if p_dst is None:
+        p_dst = p.parent
+    elif isinstance(p_dst, str):
+        p_dst = p.parent / p_dst
+
+    log.info(f'Unpacking zip to: {p_dst}')
+    shutil.unpack_archive(p, p_dst)
+
+    if delete:
+        p.unlink()
+
+    return p
 
 def _input(msg : str) -> bool:
     """Get yes/no answer from user in terminal
