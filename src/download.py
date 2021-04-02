@@ -100,7 +100,9 @@ def download_files(dl_files: Union[list, str]=None, article_id: str='14096681', 
     files = []
     for m in m_info:
         p = download_file(url=m['download_url'], name=m['name'], **kw)
-        files.append(p)
+
+        if p:
+            files.append(p)
 
     return files
 
