@@ -1,3 +1,6 @@
+# Team-work contract  - group 22
+
+
 Work Distribution:
 - Our team aims for equal contribution
 - To achieve that, we may need to assist each other frequently to ensure all teammates are on the same page
