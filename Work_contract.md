@@ -1,5 +1,5 @@
 Work Distribution:
-Our team aims for equal contribution
+-Our team aims for equal contribution
 To achieve that, we may need to assist each other frequently to ensure all teammates are on the same page
 Communication:
 Regular “stand-up” meetings:
