@@ -14382,8 +14382,10 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Initialization">Initialization<a class="anchor-link" href="#Initialization">&#182;</a></h2><p>This notebook is to be run in the 525 conda environment. I experienced some issues with <code>r2py</code>, but was able to solve them by adding <code>python=3.8.6</code> to the yaml file and recreate the environment.</p>
-<p>Below we will install some extra dependencies.</p>
+<h2 id="Usage">Usage<a class="anchor-link" href="#Usage">&#182;</a></h2><p>For easiest readability, please view the notebook as a webpage <a href="https://ubc-mds.github.io/rainfall_group22/">here</a>, or download and open the raw <a href="https://github.com/UBC-MDS/rainfall_group22/blob/main/notebooks/milestone1.html">html</a>.</p>
+<p>This notebook is to be run in the 525 conda environment. I experienced some issues with <code>r2py</code>, but was able to solve them by adding <code>python=3.8.6</code> to the yaml file and recreate the environment.</p>
+<p>We have used some helper functions, so before running please make sure to clone the repo: <a href="https://github.com/UBC-MDS/rainfall_group22">https://github.com/UBC-MDS/rainfall_group22</a>.</p>
+<p>Below we will install some extra dependencies:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14392,17 +14394,17 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Installations</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># Installations</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="c1"># used for pretty printing summary table colours</span>
-<span class="o">%</span><span class="k">conda</span> install --yes --prefix {sys.prefix} seaborn
+<span class="o">%</span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">yes</span> <span class="o">--</span><span class="n">prefix</span> <span class="p">{</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">}</span> <span class="n">seaborn</span>
 
 <span class="c1"># our package from 524, used to pretty-print file sizes during download. Not super necessary but fun to use.</span>
-<span class="o">%</span><span class="k">pip</span> install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nicenumber
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">test</span><span class="o">.</span><span class="n">pypi</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">simple</span><span class="o">/</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pypi</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">simple</span> <span class="n">nicenumber</span>
 
 <span class="c1"># used to show file download progress bar</span>
-<span class="o">%</span><span class="k">pip</span> install tqdm
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">tqdm</span>
 </pre></div>
 
      </div>
@@ -14464,7 +14466,7 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">download</span> <span class="k">as</span> <span class="n">dl</span>
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">download</span> <span class="k">as</span> <span class="n">dl</span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
 <span class="kn">from</span> <span class="nn">nicenumber</span> <span class="kn">import</span> <span class="n">nicenumber</span> <span class="k">as</span> <span class="n">nn</span>
 
@@ -14501,8 +14503,8 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> rpy2.ipython
-<span class="o">%</span><span class="k">load_ext</span> memory_profiler
+<div class=" highlight hl-python"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">rpy2</span><span class="o">.</span><span class="n">ipython</span>
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">memory_profiler</span>
 </pre></div>
 
      </div>
@@ -14543,7 +14545,7 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="c1"># download and unzip data files</span>
@@ -14607,7 +14609,7 @@ Wall time: 4min 40s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># set download directories</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># set download directories</span>
 <span class="n">p_data</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">p_data</span> <span class="c1"># top level data dir</span>
 <span class="n">p_csv</span> <span class="o">=</span> <span class="n">p_data</span> <span class="o">/</span> <span class="s1">&#39;csv&#39;</span> <span class="c1"># sub dir for saving loose csvs</span>
 <span class="n">p_combined</span> <span class="o">=</span> <span class="n">p_data</span> <span class="o">/</span> <span class="s1">&#39;rainfall.csv&#39;</span> <span class="c1"># main csv file to use</span>
@@ -14624,7 +14626,7 @@ Wall time: 4min 40s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="c1"># combine csvs with pandas</span>
@@ -14683,7 +14685,7 @@ Wall time: 1min 2s
 <th style="text-align:left">OS</th>
 <th style="text-align:left">Processor</th>
 <th style="text-align:left">RAM</th>
-<th style="text-align:left">Load Time</th>
+<th style="text-align:right">Load Time (s)</th>
 </tr>
 </thead>
 <tbody>
@@ -14692,7 +14694,7 @@ Wall time: 1min 2s
 <td style="text-align:left">Mac OS</td>
 <td style="text-align:left">2.4 GHz 8-Core Intel Core i9</td>
 <td style="text-align:left">32 GB 2667 MHz DDR4</td>
-<td style="text-align:left">62s</td>
+<td style="text-align:right">62</td>
 </tr>
 <tr>
 <td style="text-align:left">Zhiyong</td>
@@ -14716,7 +14718,7 @@ Wall time: 1min 2s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="x x-Parens">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="x x-Parens">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="x x-Parens">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="x x-Parens">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n n-FunctionCall">head</span><span class="x x-Parens">()</span>
 </pre></div>
 
@@ -14845,7 +14847,7 @@ Wall time: 1min 2s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n n-FunctionCall">info</span><span class="x x-Parens">()</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n n-FunctionCall">info</span><span class="x x-Parens">()</span>
 </pre></div>
 
      </div>
@@ -14893,7 +14895,7 @@ memory usage: 3.7+ GB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># save combined data back to csv</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># save combined data back to csv</span>
 <span class="n">df</span><span class="o">.</span><span class="n n-FunctionCall">to_csv</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="p">,</span> <span class="x x-FunctionArg">index</span><span class="o">=</span><span class="kc">False</span><span class="x x-Parens">)</span>
 </pre></div>
 
@@ -14908,7 +14910,7 @@ memory usage: 3.7+ GB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[98]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check size of full csv on disk</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># check size of full csv on disk</span>
 <span class="n">nn</span><span class="o">.</span><span class="n n-FunctionCall">to_human</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="o">.</span><span class="n n-FunctionCall">stat</span><span class="x x-Parens">()</span><span class="o">.</span><span class="n">st_size</span><span class="p">,</span> <span class="x x-FunctionArg">prec</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="x x-FunctionArg">family</span><span class="o">=</span><span class="s1">&#39;filesize&#39;</span><span class="x x-Parens">)</span>
 </pre></div>
 
@@ -14946,7 +14948,7 @@ memory usage: 3.7+ GB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 <span class="c1"># Load csv with dask</span>
 
@@ -14987,7 +14989,7 @@ Wall time: 1.63 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ddf</span><span class="o">.</span><span class="n n-FunctionCall">head</span><span class="x x-Parens">()</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">ddf</span><span class="o">.</span><span class="n n-FunctionCall">head</span><span class="x x-Parens">()</span>
 </pre></div>
 
      </div>
@@ -15121,7 +15123,7 @@ Wall time: 1.63 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">print_max_rain</span> <span class="o">=</span> <span class="kn">lambda</span> <span class="x x-FunctionArg">x</span><span class="x x-Nothing">:</span> <span class="nb">print</span><span class="x x-Parens">(</span><span class="sa">f</span><span class="s1">&#39;Max rainfall: </span><span class="si">{</span><span class="n">x</span><span class="sa">:</span><span class="s s-FstringFormat">.2f</span><span class="si">}</span><span class="s1"> mm/day&#39;</span><span class="x x-Parens">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">print_max_rain</span> <span class="o">=</span> <span class="kn">lambda</span> <span class="x x-FunctionArg">x</span><span class="x x-Nothing">:</span> <span class="nb">print</span><span class="x x-Parens">(</span><span class="sa">f</span><span class="s1">&#39;Max rainfall: </span><span class="si">{</span><span class="n">x</span><span class="sa">:</span><span class="s s-FstringFormat">.2f</span><span class="si">}</span><span class="s1"> mm/day&#39;</span><span class="x x-Parens">)</span>
 </pre></div>
 
      </div>
@@ -15135,7 +15137,7 @@ Wall time: 1.63 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="n">max_rain_baseline</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n n-FunctionCall">read_csv</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="x x-Parens">)</span><span class="o">.</span><span class="n">rain</span><span class="o">.</span><span class="n n-FunctionCall">max</span><span class="x x-Parens">()</span>
@@ -15182,7 +15184,7 @@ Wall time: 59.7 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="n">max_rain_chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n n-FunctionCall">finfo</span><span class="x x-Parens">(</span><span class="s1">&#39;float64&#39;</span><span class="x x-Parens">)</span><span class="o">.</span><span class="n">min</span>
@@ -15235,7 +15237,7 @@ Wall time: 55.3 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="n">df_one_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n n-FunctionCall">read_csv</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="p">,</span> <span class="x x-FunctionArg">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">]</span><span class="x x-Parens">)</span>
@@ -15283,7 +15285,7 @@ Wall time: 27.4 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n n-FunctionCall">read_csv</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="x x-Parens">)</span>
@@ -15337,7 +15339,7 @@ Wall time: 25 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m_results</span> <span class="o">=</span> <span class="nb nb-Special">dict</span><span class="x x-Parens">(</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">m_results</span> <span class="o">=</span> <span class="nb nb-Special">dict</span><span class="x x-Parens">(</span>
     <span class="x x-FunctionArg">baseline</span><span class="o">=</span><span class="p">[</span><span class="mi">14973</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span><span class="x x-Parens"></span>
     <span class="x x-FunctionArg">chunks</span><span class="o">=</span><span class="p">[</span><span class="mi">1323</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span><span class="x x-Parens"></span>
     <span class="x x-FunctionArg">single_column</span><span class="o">=</span><span class="p">[</span><span class="mi">5452</span><span class="p">,</span> <span class="mi">27</span><span class="p">],</span><span class="x x-Parens"></span>
@@ -15451,7 +15453,7 @@ Wall time: 25 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load csv and create arrow table</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># load csv and create arrow table</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n n-FunctionCall">dataset</span><span class="x x-Parens">(</span><span class="n">p_combined</span><span class="p">,</span> <span class="x x-FunctionArg">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="x x-Parens">)</span>
 <span class="n">arrow_table</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n n-FunctionCall">to_table</span><span class="x x-Parens">()</span>
 </pre></div>
@@ -15467,7 +15469,7 @@ Wall time: 25 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="c1"># save feather file</span>
@@ -15510,7 +15512,7 @@ Wall time: 5.82 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">memit</span>
 
 <span class="c1"># save parquet file</span>
@@ -15557,7 +15559,7 @@ Wall time: 10.9 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[92]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check filesizes on disk</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># check filesizes on disk</span>
 <span class="n">m_results</span> <span class="o">=</span> <span class="n n-FunctionCall">defaultdict</span><span class="x x-Parens">(</span><span class="nb nb-Special">dict</span><span class="x x-Parens">)</span>
 <span class="n">m_files</span> <span class="o">=</span> <span class="nb nb-Special">dict</span><span class="x x-Parens">(</span>
     <span class="x x-FunctionArg">feather</span><span class="o">=</span><span class="n">p_feather</span><span class="p">,</span><span class="x x-Parens"></span>
@@ -15611,14 +15613,14 @@ parquet: 566.1MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">R</span>
 
-<span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="n n-FunctionCall">library</span><span class="x x-Parens">(</span><span class="n">arrow</span><span class="x x-Parens">)</span>
+<span class="n n-FunctionCall">library</span><span class="x x-Parens">(</span><span class="n">dplyr</span><span class="x x-Parens">)</span>
 
 <span class="c1"># set filepaths in R</span>
-<span class="n">p_feather</span> <span class="o">=</span> <span class="s">&quot;data/data.feather&quot;</span>
-<span class="n">p_parquet</span> <span class="o">=</span> <span class="nf">Sys.glob</span><span class="p">(</span><span class="s">&quot;data/parquet/*&quot;</span><span class="p">)</span>
+<span class="n">p_feather</span> <span class="o">=</span> <span class="s2">&quot;data/data.feather&quot;</span>
+<span class="n">p_parquet</span> <span class="o">=</span> <span class="n">Sys</span><span class="o">.</span><span class="n n-FunctionCall">glob</span><span class="x x-Parens">(</span><span class="s2">&quot;data/parquet/*&quot;</span><span class="x x-Parens">)</span>
 </pre></div>
 
      </div>
@@ -15632,7 +15634,7 @@ parquet: 566.1MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">R</span>
 
 <span class="c1"># load feather</span>
@@ -15672,7 +15674,7 @@ Wall time: 12.4 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="o">%%</span><span class="n">R</span>
 
 <span class="c1"># load parquet</span>
@@ -15712,13 +15714,13 @@ Wall time: 8.9 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">R</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="nf">class</span><span class="p">(</span><span class="n">df_feather</span><span class="p">))</span>
+<span class="nb">print</span><span class="x x-Parens">(</span><span class="n n-FunctionCall">class</span><span class="x x-Parens">(</span><span class="n">df_feather</span><span class="x x-Parens">))</span>
 
-<span class="n">max_rainfall</span> <span class="o">&lt;-</span> <span class="n">df_feather</span> <span class="o">%&gt;%</span> <span class="nf">select</span><span class="p">(</span><span class="s">&#39;rain&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">max</span><span class="p">()</span>
+<span class="n">max_rainfall</span> <span class="o">&lt;-</span> <span class="n">df_feather</span> <span class="o">%&gt;%</span> <span class="n n-FunctionCall">select</span><span class="x x-Parens">(</span><span class="s1">&#39;rain&#39;</span><span class="x x-Parens">)</span> <span class="o">%&gt;%</span> <span class="nb">max</span><span class="x x-Parens">()</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="n">max_rainfall</span><span class="p">)</span>
+<span class="nb">print</span><span class="x x-Parens">(</span><span class="n">max_rainfall</span><span class="x x-Parens">)</span>
 </pre></div>
 
      </div>
@@ -15759,7 +15761,7 @@ Wall time: 8.9 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[95]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compare results metrics</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># compare results metrics</span>
 
 <span class="n">m_feather</span> <span class="o">=</span> <span class="nb nb-Special">dict</span><span class="x x-Parens">(</span>
     <span class="x x-FunctionArg">peak_memory</span><span class="o">=</span><span class="mi">9417</span><span class="p">,</span><span class="x x-Parens"></span>
