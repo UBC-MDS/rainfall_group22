@@ -132,3 +132,5 @@ milestone*.md
 .vscode
 /data/*
 
+student19.pem
+student19_accessKeys.csv
