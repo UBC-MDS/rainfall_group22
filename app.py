@@ -4,9 +4,9 @@ import traceback
 
 import joblib
 import numpy as np
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, Markup
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 model_name = 'model.joblib'
 model = joblib.load(model_name)
@@ -48,17 +48,22 @@ def return_prediction(input_vals: list=None) -> float:
 
 @app.route("/")
 def index():
+    header = 'Welcome to our rain prediction service'
 
-    return """
-    <h1>Welcome to our rain prediction service</h1>
-    To use this service, make a JSON post request to the "/predict" url with an array of 25 input values between 0 and 250.
-
-    <br><br>
-    eg:<br>
-    `curl -X POST <ec2_ip_address>/predict -d '{"data":[1,2,3,4,53,11,22,37,41,53,11,24,31,44,53,11,22,35,42,53,12,23,31,42,53]}' -H "Content-Type: application/json"`<br><br>
+    # <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    body = Markup("""
+    <h3>525 Group 22</h3>
+    To use this service, make a JSON post request to the <code>/predict</code> url with an array of 25 input values between 0 and 250.<br><br>
+    eg:
+    <code>curl -X POST ec2_ip_address/predict -d '{"data":[1,2,3,4,53,11,22,37,41,53,11,24,31,44,53,11,22,35,42,53,12,23,31,42,53]} -H "Content-Type: application/json"</code><br><br>
 
     Requests with an empty array will return a prediction for 25 random values.
-    """
+    """)
+    
+    return render_template(
+        "index.html",
+        header=header,
+        body=body), 200
 
 @app.route('/predict', methods=['GET', 'POST'])
 def rainfall_prediction():
