@@ -51,7 +51,13 @@ def index():
 
     return """
     <h1>Welcome to our rain prediction service</h1>
-    To use this service, make a JSON post request to the /predict url with 5 climate model outputs.
+    To use this service, make a JSON post request to the "/predict" url with an array of 25 input values between 0 and 250.
+
+    <br><br>
+    eg:<br>
+    `curl -X POST <ec2_ip_address>/predict -d '{"data":[1,2,3,4,53,11,22,37,41,53,11,24,31,44,53,11,22,35,42,53,12,23,31,42,53]}' -H "Content-Type: application/json"`<br><br>
+
+    Requests with an empty array will return a prediction for 25 random values.
     """
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -62,6 +68,7 @@ def rainfall_prediction():
     if not content is None:
         input_vals = list(content.values())[0]
 
+    # allow blank input, just use random numbers for input_vals
     if (
         input_vals is None
         or (isinstance(input_vals, list) and not len(input_vals) == 25)):
@@ -71,7 +78,7 @@ def rainfall_prediction():
     predicted_rainfall = return_prediction(input_vals=input_vals)
 
     results = dict(
-        input_vals=input_vals,
-        predicted_rainfall=f'{predicted_rainfall:.2f}mm')
+        predicted_rainfall=f'{predicted_rainfall:.2f}mm',
+        input_vals=input_vals)
 
     return jsonify(results), 200
