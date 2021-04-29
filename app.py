@@ -1,5 +1,6 @@
 import json
 from typing import Type
+import traceback
 
 import joblib
 import numpy as np
@@ -10,12 +11,37 @@ app = Flask(__name__)
 model_name = 'model.joblib'
 model = joblib.load(model_name)
 
+class APIError(Exception):
+    """Custom known error"""
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        self.code = 400
+
+@app.errorhandler(APIError)
+def handle_exception(err):
+    """Handle known exceptions (eg incorrect input)"""
+    response = dict(error=str(err))
+    return jsonify(response), err.code
+
+@app.errorhandler(500)
+def handle_exception(err):
+    """Handle all other errors"""
+    app.logger.error(f'Unknown Exception: {str(err)}')
+    tb = traceback.format_exception(etype=type(err), value=err, tb=err.__traceback__)
+    app.logger.debug(''.join(tb))
+
+    response = dict(
+        error='Sorry, an unknown exception occurred',
+        description=str(err))
+
+    return jsonify(response), 500
+
 
 def return_prediction(input_vals: list=None) -> float:
 
     if not isinstance(input_vals, list):
-        raise TypeError(
-            f'Input must be of type "list|narray", you input "{type(input_vals)}": {input_vals}')
+        raise APIError(
+            f'Input must be of type list|ndarray, you input: ({type(input_vals)}, {input_vals})')
 
     x = np.array(input_vals).reshape(1, len(input_vals))
     return model.predict(x)[0]
@@ -36,7 +62,10 @@ def rainfall_prediction():
     if not content is None:
         input_vals = list(content.values())[0]
 
-    if input_vals is None or not len(input_vals) == 25:
+    if (
+        input_vals is None
+        or (isinstance(input_vals, list) and not len(input_vals) == 25)):
+
         input_vals = np.random.randint(0, 250, 25).tolist()
 
     predicted_rainfall = return_prediction(input_vals=input_vals)
@@ -45,6 +74,4 @@ def rainfall_prediction():
         input_vals=input_vals,
         predicted_rainfall=f'{predicted_rainfall:.2f}mm')
 
-    print(results)
-
-    return jsonify(results)
+    return jsonify(results), 200
