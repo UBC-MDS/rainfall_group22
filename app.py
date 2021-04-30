@@ -1,5 +1,4 @@
 import json
-from typing import Type
 import traceback
 
 import joblib
