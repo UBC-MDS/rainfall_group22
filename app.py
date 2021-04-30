@@ -53,11 +53,16 @@ def index():
     # <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     body = Markup("""
     <h3>525 Group 22</h3>
-    To use this service, make a JSON post request to the <code>/predict</code> url with an array of 25 input values between 0 and 250.<br><br>
-    eg:
-    <code>curl -X POST ec2_ip_address/predict -d '{"data":[1,2,3,4,53,11,22,37,41,53,11,24,31,44,53,11,22,35,42,53,12,23,31,42,53]} -H "Content-Type: application/json"</code><br><br>
 
-    Requests with an empty array will return a prediction for 25 random values.
+    To use this service, make a JSON post request to the <code>/predict</code> url with an array of 25 input values between 0 and 250.<br>
+    Requests with an empty array will return a prediction for 25 random values.<br><br>
+    
+    eg:
+    <pre>curl -X POST ec2_ip_address/predict -d '{"data":[1,2,3,4,53,11,22,37,41,53,11,24,31,44,53,11,22,35,42,53,12,23,31,42,53]} -H "Content-Type: application/json"<br>
+{
+    "input_vals": [1, 2, 3, 4, 53, 11, 22, 37, 41, 53, 11, 24, 31, 44, 53, 11, 22, 35, 42, 53, 12, 23, 31, 42, 53], 
+    "predicted_rainfall": "31.59mm"
+}</pre><br><br>
     """)
     
     return render_template(
