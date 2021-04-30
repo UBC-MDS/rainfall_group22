@@ -134,7 +134,6 @@ milestone*.md
 
 student19.pem
 student19_accessKeys.csv
-model.joblib
 .gitignore
 notebooks/Milestone2-sample.ipynb
 notebooks/milestone1-sample.ipynb
